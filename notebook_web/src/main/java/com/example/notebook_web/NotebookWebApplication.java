@@ -1,13 +1,13 @@
-package notebook_webalk;
+package com.example.notebook_web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NotebookWebappMain {
+public class NotebookWebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NotebookWebappMain.class, args);
+		SpringApplication.run(NotebookWebApplication.class, args);
 	}
 
 }
