@@ -29,12 +29,14 @@ public class WebSecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(
                         auth -> auth
+                                .requestMatchers("/css/**", "/js/**", "/images/**", "/favicon.ico").permitAll()
                                 .requestMatchers("/resources/**", "/","/home").authenticated()
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 )
                 .formLogin(
                         form -> form
-                                .defaultSuccessUrl("/home").permitAll()
+                                .defaultSuccessUrl("/home")
+                                .permitAll()
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

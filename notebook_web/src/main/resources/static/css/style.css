@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+   /* line-height: 1.6; */
+   /* overflow-y: auto; */
+    padding-bottom: 80px;
+}
+form {
+    border: 4px solid #f1f1f1;
+}
+
+
+.container {
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+
+form {
+    max-width: 500px; /* Csökkentett szélesség */
+    padding: 15px; /* Kevesebb padding */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9;
+    position: fixed;
+    bottom: 50px; /* Távolság az oldal aljától */
+    right: 550px; /* Távolság az oldal jobb szélétől */
+    box-sizing: border-box;
+}
+
+
+input[type=text], input[type=password], input[type=submit] {
+    width: 100%; /* Teljes szélesség a formon belül */
+    padding: 8px; /* Kisebb padding */
+    margin: 6px 0; /* Kisebb margó a mezők között */
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+
+input[type=checkbox] {
+    margin-top: 10px;
+}
+
+
+input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 8px;
+    transition: opacity 0.3s ease;
+}
+
+input[type=submit]:hover {
+    opacity: 0.8;
+}
+
+#mySidenav a {
+    position: fixed; /* Position them relative to the browser window */
+    left: -180px; /* Position them outside of the screen */
+    transition: 0.3s; /* Add transition on hover */
+    padding: 15px; /* 15px padding */
+    width: 200px; /* Set a specific width */
+    text-decoration: none; /* Remove underline */
+    font-size: 20px; /* Increase font size */
+    color: white; /* White text color */
+    border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */
+}
+
+#mySidenav a:hover {
+    left: 0; /* On mouse-over, make the elements appear as they should */
+}
+
+/* The about link: 20px from the top with a green background */
+#home {
+    top: 200px;
+    background-color: #6a11cb;
+}
+
+#login {
+    top: 260px;
+    background-color: #6a11cb;
+}
+
+#register {
+    top: 320px;
+    background-color: #6a11cb;
+}
+
+#contact {
+    top: 380px;
+    background-color: #6a11cb
+}
+#products {
+    top: 440px;
+    background-color: #6a11cb
+}
+#logout {
+    top: 500px;
+    background-color: #6a11cb
+}
+
+
+.hero {
+
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #6a11cb;
+    position: sticky;
+
+}
+
+.about, .contact {
+    padding: 20px;
+    text-align: center;
+}
+
+
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}

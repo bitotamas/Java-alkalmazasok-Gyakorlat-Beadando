@@ -1,10 +1,52 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kezdőlap - ReNew Kft.</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:insert="menu"></div>
+<header>
+  <div th:insert="menu"></div>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Üdvözöljük a ReNew Kft. honlapján!</h1>
+    <p>Célunk, hogy a legjobb szolgáltatást nyújtsuk ügyfeleink számára.</p>
+
+  </section>
+
+  <section class="about">
+    <h2>Rólunk</h2>
+    <p>Mi egy dinamikus, ügyfélközpontú cég vagyunk, mely elkötelezett az innováció és minőség iránt.</p>
+    <p>Csapatunk szakértői szakterületeken dolgoznak, hogy az Ön igényeit kielégítsük.</p>
+  </section>
+
+  <section class="contact">
+    <h2>Lépjen kapcsolatba velünk!</h2>
+    <p>Kérdése van? Lépjen kapcsolatba ügyfélszolgálatunkkal az alábbi elérhetőségeken!</p>
+
+  </section>
+  <form action="">
+    <div class="container">
+      <h2>Subscribe to our Newsletter</h2>
+
+    </div>
+
+    <div class="container" style="background-color:white">
+      <input type="text" placeholder="Name" name="name" required>
+      <input type="text" placeholder="Email address" name="mail" required>
+
+    </div>
+
+    <div class="container">
+      <input type="submit" value="Subscribe">
+    </div>
+  </form>
+</main>
+
+<footer>
+  <p>&copy; 2024 ReNew Kft. Minden jog fenntartva.</p>
+</footer>
 </body>
-</html>

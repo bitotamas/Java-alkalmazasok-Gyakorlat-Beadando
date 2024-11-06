@@ -19,7 +19,7 @@ public class HomeController {
     }
     @GetMapping("/home")
     public String user() {
-        return "user";
+        return "index";
     }
     @GetMapping("/admin/home")
     public String admin() {
