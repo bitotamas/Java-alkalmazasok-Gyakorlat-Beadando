@@ -35,6 +35,7 @@ public class WebSecurityConfig {
                 )
                 .formLogin(
                         form -> form
+                                .loginPage("/login")
                                 .defaultSuccessUrl("/home")
                                 .permitAll()
                 ).logout(
