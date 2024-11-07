@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both
+}
+
+.column-66 {
+    float: left;
+    width: 66.66666%;
+    padding: 20px;
+}
+
+.column-33 {
+    float: left;
+    width: 33.33333%;
+    padding: 20px;
+}
+
+.large-font {
+    font-size: 48px;
+}
+
+.xlarge-font {
+    font-size: 64px
+}
+
+
+
+img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    border: 5px solid #555;
+}
+
+@media screen and (max-width: 1000px) {
+    .column-66,
+    .column-33 {
+        width: 100%;
+        text-align: center;
+    }
+    img {
+        margin: auto;
+    }
+}
+
+
+/* Top navigációs sáv */
+.topnav {
+    width: 100%;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    z-index: 1000;
+    transition: background-color 0.3s;
+}
+
+
+
+/* Linkek stílusa */
+.topnav a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    transition: color 0.3s;
+}
+
+/* Aláhúzás animáció hover effektusra */
+.topnav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 5px;
+    left: 50%;
+    background-color: white;
+    transition: width 0.3s, left 0.3s;
+}
+
+.topnav a:hover::after {
+    width: 80%;
+    left: 10%;
+}
+
+
+.topnav a.icon {
+    display: none;
+}
+
+
+.topnav.responsive a {
+    display: block;
+    text-align: left;
+    padding: 10px;
+}
+
+
+body {
+    margin: 0;
+    padding-top: 50px; /* Biztosítja, hogy a tartalom ne fedje át a navigációs sávot */
+    font-family: Arial, sans-serif;
+
+}
+
+
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
