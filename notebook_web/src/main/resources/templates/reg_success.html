@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Sikeres regisztráció</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/css/register.css">
+    <script>
+        // Visszaszámláló funkció
+        let countdown = 3;
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            countdownElement.textContent = countdown; // Kezdő érték megjelenítése
+
+            const interval = setInterval(() => {
+                countdown--; // Csökkentjük a visszaszámlálót
+                countdownElement.textContent = countdown; // Frissítjük a megjelenített értéket
+
+                // Ha a visszaszámlálás eléri a nullát, átirányítás
+                if (countdown <= 0) {
+                    clearInterval(interval);
+                    window.location.replace("/login");
+                }
+            }, 1000); // 1 másodpercenként frissít
+        }
+    </script>
+</head>
+<body onload="startCountdown()">
+<h1 th:utext="'Sikeres regisztráció!! <br/> Azonosítója: ' + ${id}" /></h1>
+<br>
+<p>Átirányítás <span id="countdown">3</span> másodperc múlva a bejelentkezés oldalra...</p>
+</body>
+</html>

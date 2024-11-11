@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/register.css">
+  <link rel="icon" type="image/x-icon" href="/images/webicon.jpg">
+  <title>Regisztráció</title>
+</head>
+<body>
+<form action="#" th:action="@{/register_process}" th:object="${reg}" method="post">
+  <div class="container">
+    <h1>Regisztráció</h1>
+    <p>Töltsd ki az adatokat</p>
+    <hr>
+    <label for="name"><b>Felhasználónév</b></label>
+    <input type="text" placeholder="Név" name="name" id="name" required/>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Email megadása" name="email" id="email" required>
+
+    <label for="password"><b>Jelszó</b></label>
+    <input type="password" placeholder="Jelszó megadása" name="password" id="password" required>
+
+    <label for="password-repeat"><b>Jelszó ismétlése</b></label>
+    <input type="password" placeholder="Jelszó ismétlése" name="password-repeat" id="password-repeat" required>
+    </hr>
+
+    <p> <a href="#">Terms & Privacy</a>.</p>
+    <button type="submit" class="registerbtn">Regisztráció</button>
+  </div>
+
+  <div class="container signin">
+    <p>Van már fiókod? <a href="/login">Lépj be</a>!</p>
+    <p class="register-link"> <a href="/">Mégsem</a></p>
+  </div>
+</form>
+
+</body>
+</html>

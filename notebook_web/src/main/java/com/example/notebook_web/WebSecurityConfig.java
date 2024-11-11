@@ -30,7 +30,8 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(
                         auth -> auth
                                 .requestMatchers("/css/**", "/js/**", "/images/**", "/favicon.ico").permitAll()
-                                .requestMatchers("/resources/**", "/","/home", "/home").authenticated()
+                                .requestMatchers ("/resources/**", "/", "/register", "/register_process", "/login").anonymous()
+                                .requestMatchers("/resources/**", "/","/user").authenticated()
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 )
                 .formLogin(

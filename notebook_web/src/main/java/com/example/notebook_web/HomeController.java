@@ -1,17 +1,11 @@
 package com.example.notebook_web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -21,9 +15,9 @@ public class HomeController {
     public String home() {
         return "index";
     }
-    @GetMapping("/home")
+    @GetMapping("/user")
     public String user() {
-        return "index";
+        return "user";
     }
     @GetMapping("/admin/home")
     public String admin() {
@@ -34,28 +28,30 @@ public class HomeController {
         return "login";
     }
 
-    /*@GetMapping("/register")
+
+    @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("reg", new User());
         return "register";
     }
     @Autowired
     private UserRepository userRepo;
-    @PostMapping("/regisztral_feldolgoz")
-    public String Regisztráció(@ModelAttribute User user, Model model) {
+    @PostMapping("/register_process")
+    public String Register(@ModelAttribute User user, Model model) {
         for(User felhasznalo2: userRepo.findAll())
             if(felhasznalo2.getEmail().equals(user.getEmail())){
-                model.addAttribute("uzenet", "A regisztrációs email már foglalt!");
-                return "reghiba";
+                model.addAttribute("message", "A megadott Email-cím már foglalt!");
+                return "reg_error";
             }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-// Regisztrációkor minden felhasználónak Vendég szerepet adunk:
-        user.setRole("ROLE_Vendeg");
+        // Regisztrációkor minden felhasználónak USER szerepet adunk:
+        user.setRole("ROLE_USER");
         userRepo.save(user);
+
         model.addAttribute("id", user.getId());
-        return "regjo";
-    }*/
+        return "reg_success";
+    }
 }
 
 
