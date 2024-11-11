@@ -9,13 +9,11 @@
         <span sec:authorize="isAuthenticated()">
             <a th:href="@{/}">Home</a>
             <a th:href="@{/logout}">Logout</a>
+            <a th:href="@{user}" sec:authentication="principal.username">User</a>
         </span>
 
         <span sec:authorize="hasRole('ROLE_ADMIN')">
             <a th:href="@{/admin/home}">Admin</a>
         </span>
-    </div>
-    <div sec:authorize="isAuthenticated()">
-        <h3>Welcome <span sec:authentication="principal.username">User</span></h3>
     </div>
 </div>

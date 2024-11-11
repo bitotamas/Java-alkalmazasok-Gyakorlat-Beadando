@@ -4,125 +4,144 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-   /* line-height: 1.6; */
-   /* overflow-y: auto; */
-    padding-bottom: 80px;
-}
-form {
-    border: 4px solid #f1f1f1;
-}
 
 
-.container {
+.row:after {
+    content: "";
+    display: table;
+    clear: both
+}
+
+.column-66 {
+    float: left;
+    width: 66.66666%;
     padding: 20px;
-    background-color: #f1f1f1;
+}
+
+.column-33 {
+    float: left;
+    width: 33.33333%;
+    padding: 20px;
+}
+
+.large-font {
+    font-size: 48px;
+}
+
+.xlarge-font {
+    font-size: 64px
+}
+.recognitions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.recognition-item {
+    padding: 20px;
+}
+
+.recognition-item i {
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.recognition-item:hover i {
+    transform: scale(1.1);
+}
+
+.recognition-item p {
+    font-size: 1.1em;
+    font-weight: bold;
 }
 
 
-form {
-    max-width: 500px; /* Csökkentett szélesség */
-    padding: 15px; /* Kevesebb padding */
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: #f9f9f9;
+
+img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    border: 5px solid #555;
+}
+
+@media screen and (max-width: 1000px) {
+    .column-66,
+    .column-33 {
+        width: 100%;
+        text-align: center;
+    }
+    img {
+        margin: auto;
+    }
+}
+
+
+/* Top navigációs sáv */
+.topnav {
+    width: 100%;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    overflow: hidden;
     position: fixed;
-    bottom: 50px; /* Távolság az oldal aljától */
-    right: 550px; /* Távolság az oldal jobb szélétől */
-    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    z-index: 1000;
+    transition: background-color 0.3s;
 }
 
 
-input[type=text], input[type=password], input[type=submit] {
-    width: 100%; /* Teljes szélesség a formon belül */
-    padding: 8px; /* Kisebb padding */
-    margin: 6px 0; /* Kisebb margó a mezők között */
+
+/* Linkek stílusa */
+.topnav a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 16px;
     display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-sizing: border-box;
-}
-
-
-input[type=checkbox] {
-    margin-top: 10px;
-}
-
-
-input[type=submit] {
-    background-color: #04AA6D;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    padding: 8px;
-    transition: opacity 0.3s ease;
-}
-
-input[type=submit]:hover {
-    opacity: 0.8;
-}
-
-#mySidenav a {
-    position: fixed; /* Position them relative to the browser window */
-    left: -180px; /* Position them outside of the screen */
-    transition: 0.3s; /* Add transition on hover */
-    padding: 15px; /* 15px padding */
-    width: 200px; /* Set a specific width */
-    text-decoration: none; /* Remove underline */
-    font-size: 20px; /* Increase font size */
-    color: white; /* White text color */
-    border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */
-}
-
-#mySidenav a:hover {
-    left: 0; /* On mouse-over, make the elements appear as they should */
-}
-
-/* The about link: 20px from the top with a green background */
-#home {
-    top: 200px;
-    background-color: #6a11cb;
-}
-
-#login {
-    top: 260px;
-    background-color: #6a11cb;
-}
-
-#register {
-    top: 320px;
-    background-color: #6a11cb;
-}
-
-#contact {
-    top: 380px;
-    background-color: #6a11cb
-}
-#products {
-    top: 440px;
-    background-color: #6a11cb
-}
-#logout {
-    top: 500px;
-    background-color: #6a11cb
-}
-
-
-.hero {
-
-    color: white;
-    padding: 50px 20px;
     text-align: center;
-    background-color: #6a11cb;
-    position: sticky;
-
+    position: relative;
+    transition: color 0.3s;
 }
 
-.about, .contact {
-    padding: 20px;
-    text-align: center;
+/* Aláhúzás animáció hover effektusra */
+.topnav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 5px;
+    left: 50%;
+    background-color: white;
+    transition: width 0.3s, left 0.3s;
+}
+
+.topnav a:hover::after {
+    width: 80%;
+    left: 10%;
+}
+
+
+.topnav a.icon {
+    display: none;
+}
+
+
+.topnav.responsive a {
+    display: block;
+    text-align: left;
+    padding: 10px;
+}
+
+
+body {
+    margin: 0;
+    padding-top: 50px; /* Biztosítja, hogy a tartalom ne fedje át a navigációs sávot */
+    font-family: Arial, sans-serif;
+
 }
 
 

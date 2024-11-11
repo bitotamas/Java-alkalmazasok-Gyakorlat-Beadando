@@ -30,14 +30,13 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(
                         auth -> auth
                                 .requestMatchers("/css/**", "/js/**", "/images/**", "/favicon.ico").permitAll()
-                                .requestMatchers("/resources/**", "/","/home").authenticated()
+                                .requestMatchers("/resources/**", "/","/home", "/home").authenticated()
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 )
                 .formLogin(
                         form -> form
                                 .loginPage("/login")
-                                .defaultSuccessUrl("/home")
-                                .permitAll()
+                                .defaultSuccessUrl("/").permitAll()
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
