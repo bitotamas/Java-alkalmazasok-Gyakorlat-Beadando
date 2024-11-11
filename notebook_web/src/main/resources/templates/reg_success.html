@@ -19,14 +19,15 @@
                 if (countdown <= 0) {
                     clearInterval(interval);
                     window.location.replace("/login");
+
                 }
             }, 1000); // 1 másodpercenként frissít
         }
     </script>
 </head>
 <body onload="startCountdown()">
+<h1></h1>
 <h1 th:utext="'Sikeres regisztráció!! <br/> Azonosítója: ' + ${id}" /></h1>
-<br>
 <p>Átirányítás <span id="countdown">3</span> másodperc múlva a bejelentkezés oldalra...</p>
 </body>
 </html>

@@ -29,9 +29,9 @@ public class WebSecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers("/css/**", "/js/**", "/images/**", "/favicon.ico").permitAll()
-                                .requestMatchers ("/resources/**", "/", "/register", "/register_process", "/login").anonymous()
-                                .requestMatchers("/resources/**", "/","/user").authenticated()
+                                .requestMatchers("/","/css/**", "/js/**", "/images/**", "/favicon.ico").permitAll()
+                                .requestMatchers("/resources/**","/register", "/register_process").permitAll()
+                                .requestMatchers( "/","/user").hasRole("USER")
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 )
                 .formLogin(

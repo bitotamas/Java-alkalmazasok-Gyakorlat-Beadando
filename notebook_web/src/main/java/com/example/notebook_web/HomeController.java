@@ -34,6 +34,7 @@ public class HomeController {
         model.addAttribute("reg", new User());
         return "register";
     }
+
     @Autowired
     private UserRepository userRepo;
     @PostMapping("/register_process")
@@ -41,16 +42,15 @@ public class HomeController {
         for(User felhasznalo2: userRepo.findAll())
             if(felhasznalo2.getEmail().equals(user.getEmail())){
                 model.addAttribute("message", "A megadott Email-cím már foglalt!");
-                return "reg_error";
+                return "/reg_error";
             }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         // Regisztrációkor minden felhasználónak USER szerepet adunk:
         user.setRole("ROLE_USER");
         userRepo.save(user);
-
         model.addAttribute("id", user.getId());
-        return "reg_success";
+        return "/reg_success";
     }
 }
 
