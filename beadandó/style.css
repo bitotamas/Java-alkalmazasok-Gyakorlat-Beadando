@@ -31,6 +31,30 @@
 .xlarge-font {
     font-size: 64px
 }
+.recognitions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.recognition-item {
+    padding: 20px;
+}
+
+.recognition-item i {
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.recognition-item:hover i {
+    transform: scale(1.1);
+}
+
+.recognition-item p {
+    font-size: 1.1em;
+    font-weight: bold;
+}
 
 
 

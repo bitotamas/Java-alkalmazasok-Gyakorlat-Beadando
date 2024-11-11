@@ -136,7 +136,7 @@ nav ul li a:hover {
 }
 
 .buy-button {
-    background-color: #04AA6D;
+    background-color: #2575fc;
     color: white;
     padding: 10px 20px;
     font-size: 16px;
@@ -147,7 +147,7 @@ nav ul li a:hover {
 }
 
 .buy-button:hover {
-    background-color: #45a049;
+    background-color: lightskyblue;
 }
 
 
@@ -239,7 +239,7 @@ nav ul li a:hover {
 }
 
 .review-form button {
-    background-color: #04AA6D;
+    background-color:  #2575fc;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -248,5 +248,5 @@ nav ul li a:hover {
 }
 
 .review-form button:hover {
-    background-color: #45a049;
+    background-color: #2575fc;
 }
