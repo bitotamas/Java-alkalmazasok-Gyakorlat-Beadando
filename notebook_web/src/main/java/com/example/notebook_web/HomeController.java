@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -24,7 +26,10 @@ public class HomeController {
         return "admin";
     }
     @GetMapping("/login")
-    public String login() {
+    public String login(@RequestParam(value = "error", required = false) String error, Model model){
+        if (error != null) {
+            model.addAttribute("loginError", "Hibás email cím vagy jelszó");
+        }
         return "login";
     }
 
@@ -38,11 +43,11 @@ public class HomeController {
     @Autowired
     private UserRepository userRepo;
     @PostMapping("/register_process")
-    public String Register(@ModelAttribute User user, Model model) {
+    public String Register(@ModelAttribute User user, Model model, RedirectAttributes redirectAttributes) {
         for(User felhasznalo2: userRepo.findAll())
             if(felhasznalo2.getEmail().equals(user.getEmail())){
-                model.addAttribute("message", "A megadott Email-cím már foglalt!");
-                return "/reg_error";
+                redirectAttributes.addFlashAttribute("regMessage", "A megadott Email-cím már foglalt!");
+                return "redirect:/register";
             }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -50,7 +55,8 @@ public class HomeController {
         user.setRole("ROLE_USER");
         userRepo.save(user);
         model.addAttribute("id", user.getId());
-        return "/reg_success";
+        redirectAttributes.addFlashAttribute("successMessage", "Sikeres regisztráció! Kérjük jelentkezzen be!");
+        return "redirect:/login";
     }
 }
 

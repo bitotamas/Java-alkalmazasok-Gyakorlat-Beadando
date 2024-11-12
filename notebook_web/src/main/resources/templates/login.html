@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +11,12 @@
 
 <div class="login-container">
     <h2>Bejelentkezés</h2>
+    <div th:if="${successMessage}">
+        <p style="color: green;" th:text="${successMessage}"></p>
+    </div>
+    <div th:if="${loginError}">
+        <p style="color: red;" th:text="${loginError}"></p>
+    </div>
     <form method="post" action="/login">
         <label for="email">Email</label>
         <input type="email" id="email" name="username" required>
@@ -26,6 +32,9 @@
 
     </form>
 </div>
+
+
+
 
 
 
