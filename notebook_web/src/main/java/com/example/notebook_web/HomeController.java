@@ -17,14 +17,27 @@ public class HomeController {
     public String home() {
         return "index";
     }
+
     @GetMapping("/user")
     public String user() {
         return "user";
     }
+
+    @GetMapping("/contact")
+    public String contact() {
+        return "contact";
+    }
+
+    @GetMapping("/products")
+    public String products() {
+        return "products";
+    }
+
     @GetMapping("/admin/home")
     public String admin() {
         return "admin";
     }
+
     @GetMapping("/login")
     public String login(@RequestParam(value = "error", required = false) String error, Model model){
         if (error != null) {

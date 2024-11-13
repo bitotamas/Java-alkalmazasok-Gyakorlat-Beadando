@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termékek</title>
+    <link rel="icon" type="image/x-icon" href="/images/webicon.jpg">
+    <link rel="stylesheet" href="/css/products.css">
+</head>
+<body>
+<header>
+        <div  th:insert="menu" class="topnav">
+        </div>
+    <div class="container">
+        <h1>Termékeink</h1>
+        <div class="search-container">
+            <label for="search"></label><input type="text" id="search" placeholder="Keresés...">
+            <button type="submit" class="search-button">🔍</button>
+        </div>
+
+    </div>
+</header>
+
+<section class="products-section">
+    <div class="container">
+
+
+        <div class="products-list">
+            <!-- Termékek -->
+            <div class="product-card">
+
+                <h3>Termék 1</h3>
+                <p class="product-price">Ár: <span>12 000 Ft</span></p>
+
+                <a href="#" class="buy-button">Megtekintés</a>
+            </div>
+
+            <div class="product-card">
+
+                <h3>Termék 2</h3>
+                <p class="product-price">Ár: <span>15 500 Ft</span></p>
+
+                <a href="#" class="buy-button">Megtekintés</a>
+            </div>
+            <div class="product-card">
+
+                <h3>Termék 3</h3>
+                <p class="product-price">Ár: <span>9 999 Ft</span></p>
+
+                <a href="#" class="buy-button">Megtekintés</a>
+            </div>
+            <div class="product-card">
+
+                <h3>Termék 4</h3>
+                <p class="product-price">Ár: <span>20 000 Ft</span></p>
+
+                <a href="#" class="buy-button">Megtekintés</a>
+            </div>
+            <div class="product-card">
+
+                <h3>Termék 5</h3>
+                <p class="product-price">Ár: <span>18 000 Ft</span></p>
+
+                <a href="#" class="buy-button">Megtekintés</a>
+            </div>
+            <div class="product-card">
+
+                <h3>Termék 6</h3>
+                <p class="product-price">Ár: <span>25 000 Ft</span></p>
+
+                <a href="#" class="buy-button">Megtekintés</a>
+            </div>
+            <div class="product-card">
+
+                <h3>Termék 7</h3>
+                <p class="product-price">Ár: <span>12 000 Ft</span></p>
+
+                <a href="#" class="buy-button">Megtekintés</a>
+            </div>
+            <div class="product-card">
+
+                <h3>Termék 8</h3>
+                <p class="product-price">Ár: <span>12 000 Ft</span></p>
+
+                <a href="#" class="buy-button">Megtekintés</a>
+            </div>
+            <div class="product-card">
+
+                <h3>Termék 9</h3>
+                <p class="product-price">Ár: <span>12 000 Ft</span></p>
+
+                <a href="#" class="buy-button">Megtekintés</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="reviews-section">
+    <div class="container">
+        <h2>Vélemények</h2>
+        <div class="reviews-list">
+            <div class="review">
+                <h4>Anna Kovács</h4>
+                <p>⭐⭐⭐⭐⭐</p>
+                <p>Remek termék, minden elvárásomat teljesítette!</p>
+            </div>
+            <div class="review">
+                <h4>Péter Szabó</h4>
+                <p>⭐⭐⭐⭐</p>
+                <p>Kiváló minőség, de az ár kicsit magasnak tűnik.</p>
+            </div>
+            <div class="review">
+                <h4>Katalin Tóth</h4>
+                <p>⭐⭐⭐⭐⭐</p>
+                <p>Nagyon elégedett vagyok a vásárlással, mindenkinek ajánlom!</p>
+            </div>
+        </div>
+        <!-- Vélemény Beküldés Form -->
+        <h3>Írj Véleményt</h3>
+        <form class="review-form">
+            <label for="name">Név:</label>
+            <input type="text" id="name" name="name" placeholder="A te neved" required>
+
+            <label for="rating">Értékelés:</label>
+            <select id="rating" name="rating" required>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+            </select>
+
+            <label for="review">Véleményed:</label>
+            <textarea id="review" name="review" placeholder="Írd le véleményed" required></textarea>
+
+            <button type="submit" class="submit-review">Vélemény Küldése</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>
