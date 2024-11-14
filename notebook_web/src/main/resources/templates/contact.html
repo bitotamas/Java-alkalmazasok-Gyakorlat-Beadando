@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,33 +9,19 @@
 </head>
 <body>
 <div class="container">
-    <form action="">
-        <div class="row">
-            <div class="col-25">
-                <label for="fname">First Name</label>
-            </div>
-            <div class="col-75">
-                <input type="text" id="fname" name="firstname" placeholder="Your name..">
-            </div>
+    <form  th:action="@{/contactResult}" th:object="${attr1}" method="post">
+        <h1>Kapcsolati űrlap</h1>
+        <div th:if="${successContact}">
+            <p style="color: green;" th:text="${successContact}"></p>
         </div>
+        <div id="error-message"></div>
         <div class="row">
             <div class="col-25">
-                <label for="lname">Last Name</label>
+                <label for="email">Email</label>
             </div>
+            <span id="userEmail" th:text="${userEmail}" style="display: none;"></span>
             <div class="col-75">
-                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-                <label for="country">Country</label>
-            </div>
-            <div class="col-75">
-                <select id="country" name="country">
-                    <option value="australia">Australia</option>
-                    <option value="canada">Canada</option>
-                    <option value="usa">USA</option>
-                </select>
+                    <input type="text" id="email" name="email" placeholder="E-mail cím.." th:field="*{email}" value="" required>
             </div>
         </div>
         <div class="row">
@@ -43,17 +29,50 @@
                 <label for="subject">Subject</label>
             </div>
             <div class="col-75">
-                <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                <textarea id="subject" name="subject" placeholder="Írj nekünk..." style="height:200px" th:field="*{message}" required></textarea>
             </div>
         </div>
         <div class="row">
-            <input type="submit" value="Submit">
+            <input type="submit" value="Elküldés">
         </div>
         <div style="vertical-align: center">
             <p class="backToHome"> <a href="/">Vissza a Főoldalra</a></p>
         </div>
     </form>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const emailInput = document.getElementById("email");
+        const errorMessage = document.getElementById("error-message");
+        const userEmail = document.getElementById("userEmail").textContent;
 
+        // Kitöltjük az email input mezőt, ha az userEmail nem üres
+        if (userEmail) {
+            document.getElementById("email").value = userEmail;
+            document.getElementById("email").readOnly = true;
+        }
+        form.addEventListener("submit", function (event) {
+            let isValid = true;
+            let messages = [];
+
+
+            // Email formátum ellenőrzés
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailInput.value)) {
+                //alert("Kérlek, adj meg egy érvényes email címet!");
+                messages.push("Kérlek, adj meg egy érvényes email címet!")
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+                errorMessage.style.display = "block;"
+                errorMessage.style.color = "red";
+                errorMessage.innerHTML = messages.join("<br>");
+            }
+        });
+    });
+</script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.example.notebook_web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +20,6 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/user")
-    public String user() {
-        return "user";
-    }
-
-    @GetMapping("/contact")
-    public String contact() {
-        return "contact";
-    }
 
     @GetMapping("/products")
     public String products() {
@@ -70,6 +63,47 @@ public class HomeController {
         model.addAttribute("id", user.getId());
         redirectAttributes.addFlashAttribute("successMessage", "Sikeres regisztráció! Kérjük jelentkezzen be!");
         return "redirect:/login";
+    }
+
+
+    @GetMapping("/contact")
+    public String contactForm(Model model) {// Model model: Dependency injection
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        // Ellenőrzés, hogy a felhasználó be van-e jelentkezve és nem anonim
+        if (authentication != null && authentication.isAuthenticated() && !"anonymousUser".equals(authentication.getName())) {
+            String email = authentication.getName(); // Ha a felhasználó email címként van azonosítva
+            model.addAttribute("userEmail", email);
+        } else {
+            model.addAttribute("userEmail", ""); // Üres, ha nincs bejelentkezve
+        }
+
+        model.addAttribute("attr1", new Contact());
+        return "contact";
+    }
+    @Autowired
+    private ContactRepository contactRepo;
+    @PostMapping("/contactResult")
+    public String contactSubmit(@ModelAttribute Contact msg, Model model, RedirectAttributes redirectAttributes) {
+        model.addAttribute("attr2", msg);
+
+        if(SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))
+        {
+            msg.setName("Guest");
+        }
+        else
+        {
+            for(User felhasznalo2: userRepo.findAll()){
+                if(felhasznalo2.getEmail().equals(msg.getEmail())){
+                    msg.setName(felhasznalo2.getName());
+                }
+            }
+        }
+
+        // Űrlap mentése a databasebe
+        contactRepo.save(msg);
+        redirectAttributes.addFlashAttribute("successContact", "Válaszát sikeresen elküldtük!");
+        return "redirect:/contact";
     }
 }
 

@@ -136,6 +136,10 @@ img {
     padding: 10px;
 }
 
+.inactiveLink {
+    pointer-events: none;
+    cursor: default;
+}
 
 body {
     margin: 0;

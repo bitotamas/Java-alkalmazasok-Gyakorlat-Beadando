@@ -12,6 +12,9 @@
   <div class="container">
     <h1>Regisztráció</h1>
     <div id="error-message"></div>
+    <div th:if="${successContact}">
+      <p style="color: green;" th:text="${successContact}"></p>
+    </div>
     <p>Töltsd ki az adatokat</p>
     <hr>
     <label for="name"><b>Felhasználónév</b></label>
@@ -27,7 +30,7 @@
     <input type="password" placeholder="Jelszó ismétlése" name="password-repeat" id="password-repeat" required>
     </hr>
 
-    <p> <a href="#">Terms & Privacy</a>.</p>
+    <p> <a href="">Terms & Privacy</a>.</p>
     <button type="submit" class="registerbtn">Regisztráció</button>
   </div>
 

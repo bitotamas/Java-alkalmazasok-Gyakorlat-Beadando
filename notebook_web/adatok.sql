@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Nov 07. 14:46
+-- Létrehozás ideje: 2024. Nov 14. 21:58
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -22,6 +22,30 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `feladat` DEFAULT CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
 USE `feladat`;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `message` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `contact`
+--
+
+INSERT INTO `contact` (`id`, `name`, `email`, `message`, `created_at`) VALUES
+(16, 'user@gmail.com', 'teszt@gmail.com', 'dasdasdsasds', '2024-11-14 18:44:11'),
+(17, 'Guest', 'user@gmail.com', 'asdasdasd', '2024-11-14 20:03:09'),
+(18, 'User', 'user@gmail.com', 'asdasdfsasd', '2024-11-14 20:14:31'),
+(19, 'User', 'user@gmail.com', 'sziaaa', '2024-11-14 20:36:48');
 
 -- --------------------------------------------------------
 
@@ -413,6 +437,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`) VALUES
 --
 
 --
+-- A tábla indexei `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- A tábla indexei `gep`
 --
 ALTER TABLE `gep`
@@ -443,6 +473,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT a táblához `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT a táblához `gep`
 --
 ALTER TABLE `gep`
@@ -464,7 +500,7 @@ ALTER TABLE `processzor`
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Megkötések a kiírt táblákhoz

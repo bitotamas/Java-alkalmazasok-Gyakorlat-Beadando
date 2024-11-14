@@ -12,7 +12,8 @@
             <a th:href="@{/}">Főoldal</a>
             <a th:href="@{/contact}">Kapcsolat</a>
             <a th:href="@{/products}">Termékek</a>
-            <a th:href="@{/user}" sec:authentication="principal.username"></a>
+            <label for="user" style="font-weight: bold; font-size: larger">Felhasználó: </label>
+            <a id="user" sec:authentication="principal.username" class="inactiveLink"></a>
             <a th:href="@{/logout}">Kijelentkezés</a>
         </span>
 

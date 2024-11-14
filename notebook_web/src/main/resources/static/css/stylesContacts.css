@@ -1,0 +1,12 @@
+body {
+    background-image: url("images/pxfuel.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.content {
+    margin: 0 auto;
+    width: 50%;
+}
