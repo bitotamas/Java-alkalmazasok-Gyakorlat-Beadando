@@ -1,9 +1,7 @@
 package com.example.Controller;
 
-import com.example.Model.Contact;
-import com.example.Repository.ContactRepository;
-import com.example.Model.User;
-import com.example.Repository.UserRepository;
+import com.example.Model.*;
+import com.example.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,12 +25,6 @@ public class HomeController {
     @GetMapping("/")
     public String home() {
         return "index";
-    }
-
-
-    @GetMapping("/products")
-    public String products() {
-        return "products";
     }
 
     @GetMapping("/admin/home")
@@ -86,13 +79,13 @@ public class HomeController {
             model.addAttribute("userEmail", ""); // Üres, ha nincs bejelentkezve
         }
 
-        model.addAttribute("attr1", new Contact());
+        model.addAttribute("attr1", new NewContact());
         return "contact";
     }
     @Autowired
-    private ContactRepository contactRepo;
+    private NewContactRepository newContactRepo;
     @PostMapping("/contactResult")
-    public String contactSubmit(@ModelAttribute Contact msg, Model model, RedirectAttributes redirectAttributes) {
+    public String contactSubmit(@ModelAttribute NewContact msg, Model model, RedirectAttributes redirectAttributes) {
         model.addAttribute("attr2", msg);
 
         if(SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))
@@ -109,24 +102,67 @@ public class HomeController {
         }
 
         // Űrlap mentése a databasebe
-        contactRepo.save(msg);
+        newContactRepo.save(msg);
         redirectAttributes.addFlashAttribute("successContact", "Válaszát sikeresen elküldtük!");
         return "redirect:/contact";
     }
-
+    @Autowired
+    private ContactRepository contactRepo;
     @GetMapping("/messages")
     public String getContactResult(Model model){
-        List<Contact> contacts = StreamSupport.stream(contactRepo.findAll().spliterator(), false).toList();
 
-        // Rendezés a created_at mező szerint csökkenő sorrendben
-        List<Contact> sortedContacts = contacts.stream()
-                .sorted((c1, c2) -> c2.getCreated_at().compareTo(c1.getCreated_at()))
-                .collect(Collectors.toList());
+        try {
+            // Adatok lekérdezése az adatbázisból
+            List<Contact> contacts = StreamSupport.stream(contactRepo.findAll().spliterator(), false).toList();
 
-        // Rendezetten átadjuk a HTML-nek
-        model.addAttribute("Contacts", sortedContacts);
-        return "contactList";
+            if (contacts != null && !contacts.isEmpty()) {
+                // Csak nem üres lista esetén adjuk hozzá a modellhez
+                List<Contact> sortedContacts = contacts.stream()
+                        .sorted((c1, c2) -> c2.getCreated_at().compareTo(c1.getCreated_at()))
+                        .collect(Collectors.toList());
+
+                model.addAttribute("Contacts", sortedContacts);
+            } else {
+                model.addAttribute("Contacts", List.of()); // Üres lista, ha nincs adat
+            }
+        } catch (Exception e) {
+            // Hiba esetén logolás és üres lista hozzáadása
+            System.err.println("Hiba történt a /messages elérésénél: " + e.getMessage());
+            model.addAttribute("Contacts", List.of());
+        }
+
+        return "/contactList";
     }
+
+    @Autowired
+    private NotebookRepository notebookRepository;
+    @GetMapping("/products")
+    public String products(Model model) {
+        // Összes notebook lekérdezése
+        List<Notebook> notebooks = StreamSupport
+                .stream(notebookRepository.findAll().spliterator(), false)
+                .toList();
+
+        // Ellenőrizzük, hogy van-e adat
+        if (notebooks.isEmpty()) {
+            model.addAttribute("Products", List.of()); // Üres lista, ha nincs adat
+            return "products";
+        }
+
+        // Véletlen notebookok kiválasztása
+        List<Notebook> randomNotebooks = new ArrayList<>();
+        for (int i = 0; i < 16; i++) {
+            int randomIndex = (int) (Math.random() * notebooks.size());
+            randomNotebooks.add(notebooks.get(randomIndex));
+        }
+
+        // Adatok átadása a modellnek
+        model.addAttribute("Products", randomNotebooks);
+        return "products";
+    }
+
+
+
 }
 
 

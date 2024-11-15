@@ -6,13 +6,15 @@
     <title>Termékek</title>
     <link rel="icon" type="image/x-icon" href="/images/webicon.jpg">
     <link rel="stylesheet" href="/css/products.css">
+    <link rel="stylesheet" href="/css/menu.css">
 </head>
 <body>
 <header>
         <div  th:insert="menu" class="topnav">
         </div>
+    <p><br><br></p>
     <div class="container">
-        <h1>Termékeink</h1>
+        <h1>Ajánlott Termékeink</h1>
         <div class="search-container">
             <label for="search"></label><input type="text" id="search" placeholder="Keresés...">
             <button type="submit" class="search-button">🔍</button>
@@ -27,69 +29,12 @@
 
         <div class="products-list">
             <!-- Termékek -->
-            <div class="product-card">
+            <div th:each="product : ${Products}" class="product-card">
+                <img th:src="'/images/'+${product.getGyarto()}+'.jpg'" alt="Termék 1">
+                <h3 th:text="${product.getGyarto()}+ ' ' +${product.getTipus()}"></h3>
+                <p class="product-price">Ár: <span th:text="${product.getAr()}+ ' Ft'"></span></p>
 
-                <h3>Termék 1</h3>
-                <p class="product-price">Ár: <span>12 000 Ft</span></p>
-
-                <a href="#" class="buy-button">Megtekintés</a>
-            </div>
-
-            <div class="product-card">
-
-                <h3>Termék 2</h3>
-                <p class="product-price">Ár: <span>15 500 Ft</span></p>
-
-                <a href="#" class="buy-button">Megtekintés</a>
-            </div>
-            <div class="product-card">
-
-                <h3>Termék 3</h3>
-                <p class="product-price">Ár: <span>9 999 Ft</span></p>
-
-                <a href="#" class="buy-button">Megtekintés</a>
-            </div>
-            <div class="product-card">
-
-                <h3>Termék 4</h3>
-                <p class="product-price">Ár: <span>20 000 Ft</span></p>
-
-                <a href="#" class="buy-button">Megtekintés</a>
-            </div>
-            <div class="product-card">
-
-                <h3>Termék 5</h3>
-                <p class="product-price">Ár: <span>18 000 Ft</span></p>
-
-                <a href="#" class="buy-button">Megtekintés</a>
-            </div>
-            <div class="product-card">
-
-                <h3>Termék 6</h3>
-                <p class="product-price">Ár: <span>25 000 Ft</span></p>
-
-                <a href="#" class="buy-button">Megtekintés</a>
-            </div>
-            <div class="product-card">
-
-                <h3>Termék 7</h3>
-                <p class="product-price">Ár: <span>12 000 Ft</span></p>
-
-                <a href="#" class="buy-button">Megtekintés</a>
-            </div>
-            <div class="product-card">
-
-                <h3>Termék 8</h3>
-                <p class="product-price">Ár: <span>12 000 Ft</span></p>
-
-                <a href="#" class="buy-button">Megtekintés</a>
-            </div>
-            <div class="product-card">
-
-                <h3>Termék 9</h3>
-                <p class="product-price">Ár: <span>12 000 Ft</span></p>
-
-                <a href="#" class="buy-button">Megtekintés</a>
+                <a href="" class="buy-button">Részletek</a>
             </div>
         </div>
     </div>
