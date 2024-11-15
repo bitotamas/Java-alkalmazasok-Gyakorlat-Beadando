@@ -9,6 +9,7 @@ import java.util.Date;
 @Table(name = "contact")
 public class Contact {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "name")

@@ -79,13 +79,13 @@ public class HomeController {
             model.addAttribute("userEmail", ""); // Üres, ha nincs bejelentkezve
         }
 
-        model.addAttribute("attr1", new NewContact());
+        model.addAttribute("attr1", new Contact());
         return "contact";
     }
     @Autowired
-    private NewContactRepository newContactRepo;
+    private ContactRepository contactRepo;
     @PostMapping("/contactResult")
-    public String contactSubmit(@ModelAttribute NewContact msg, Model model, RedirectAttributes redirectAttributes) {
+    public String contactSubmit(@ModelAttribute Contact msg, Model model, RedirectAttributes redirectAttributes) {
         model.addAttribute("attr2", msg);
 
         if(SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))
@@ -102,12 +102,11 @@ public class HomeController {
         }
 
         // Űrlap mentése a databasebe
-        newContactRepo.save(msg);
+        contactRepo.save(msg);
         redirectAttributes.addFlashAttribute("successContact", "Válaszát sikeresen elküldtük!");
         return "redirect:/contact";
     }
-    @Autowired
-    private ContactRepository contactRepo;
+
     @GetMapping("/messages")
     public String getContactResult(Model model){
 
