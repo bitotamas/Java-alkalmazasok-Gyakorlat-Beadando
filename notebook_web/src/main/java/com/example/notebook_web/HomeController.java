@@ -12,6 +12,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 
 @Controller
 public class HomeController {
@@ -104,6 +109,20 @@ public class HomeController {
         contactRepo.save(msg);
         redirectAttributes.addFlashAttribute("successContact", "Válaszát sikeresen elküldtük!");
         return "redirect:/contact";
+    }
+
+    @GetMapping("/messages")
+    public String getContactResult(Model model){
+        List<Contact> contacts = StreamSupport.stream(contactRepo.findAll().spliterator(), false).toList();
+
+        // Rendezés a created_at mező szerint csökkenő sorrendben
+        List<Contact> sortedContacts = contacts.stream()
+                .sorted((c1, c2) -> c2.getCreated_at().compareTo(c1.getCreated_at()))
+                .collect(Collectors.toList());
+
+        // Rendezetten átadjuk a HTML-nek
+        model.addAttribute("Contacts", sortedContacts);
+        return "contactList";
     }
 }
 

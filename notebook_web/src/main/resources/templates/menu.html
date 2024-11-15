@@ -4,6 +4,7 @@
         <span sec:authorize="isAnonymous()">
             <a th:href="@{/}">Főoldal</a>
             <a th:href="@{/contact}">Kapcsolat</a>
+            <a th:href="@{/messages}">Üzenetek</a>
             <a th:href="@{/login}">Bejelentkezés</a>
             <a th:href="@{/register}">Regisztráció</a>
         </span>
@@ -11,6 +12,7 @@
         <span sec:authorize="isAuthenticated()">
             <a th:href="@{/}">Főoldal</a>
             <a th:href="@{/contact}">Kapcsolat</a>
+            <a th:href="@{/messages}">Üzenetek</a>
             <a th:href="@{/products}">Termékek</a>
             <label for="user" style="font-weight: bold; font-size: larger">Felhasználó: </label>
             <a id="user" sec:authentication="principal.username" class="inactiveLink"></a>

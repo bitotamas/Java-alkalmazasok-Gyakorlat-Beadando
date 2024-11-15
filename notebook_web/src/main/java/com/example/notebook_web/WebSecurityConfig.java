@@ -30,8 +30,8 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(
                         auth -> auth
                                 .requestMatchers("/css/**", "/js/**", "/images/**", "/favicon.ico").permitAll()
-                                .requestMatchers("/","/login","/register", "/register_process", "/contact", "/contactResult").permitAll()
-                                .requestMatchers( "/resources/**","/user","/products").hasRole("USER")
+                                .requestMatchers("/","/login","/register", "/register_process", "/contact", "/contactResult","/messages").permitAll()
+                                .requestMatchers( "/resources/**","/user","/products","/messages").hasRole("USER")
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 )
                 .formLogin(
