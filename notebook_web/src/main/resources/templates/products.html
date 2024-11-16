@@ -7,19 +7,15 @@
     <link rel="icon" type="image/x-icon" href="/images/webicon.jpg">
     <link rel="stylesheet" href="/css/products.css">
     <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/popup.css">
 </head>
 <body>
 <header>
-        <div  th:insert="menu" class="topnav">
+        <div  th:insert="~{menu}" class="topnav">
         </div>
     <p><br><br></p>
     <div class="container">
-        <h1>Ajánlott Termékeink</h1>
-        <div class="search-container">
-            <label for="search"></label><input type="text" id="search" placeholder="Keresés...">
-            <button type="submit" class="search-button">🔍</button>
-        </div>
-
+        <h1><u>Ajánlott Termékeink</u></h1>
     </div>
 </header>
 
@@ -29,12 +25,24 @@
 
         <div class="products-list">
             <!-- Termékek -->
-            <div th:each="product : ${Products}" class="product-card">
-                <img th:src="'/images/'+${product.getGyarto()}+'.jpg'" alt="Termék 1">
+            <div th:each="product, idx : ${Products}" class="product-card">
+                <img th:src="'/images/brand/'+${product.getGyarto()}+'.jpg'">
                 <h3 th:text="${product.getGyarto()}+ ' ' +${product.getTipus()}"></h3>
                 <p class="product-price">Ár: <span th:text="${product.getAr()}+ ' Ft'"></span></p>
+                <button onclick="reszletek(this)" class="buy-button">Részletek</button>
 
-                <a href="" class="buy-button">Részletek</a>
+
+                <div id="hiddenData" style="display: none;">
+                    <h2 th:text="${product.getGyarto()}+ ' ' +${product.getTipus()}">Gyárto + Típus</h2>
+                    <p th:text="'Operációs rendszer: '+${OSs.get(idx.index).getNev()}">Operációs rendszer (Név)</p>
+                    <p th:text="'Processzor: '+${CPUs.get(idx.index).getGyarto()}+' '+${CPUs.get(idx.index).getTipus()}">Processzor (Gyártó + Típus)</p>
+                    <p th:text="'Videóvezérlő: '+${product.getVideovezerlo()}"></p>
+                    <p th:text="'Memória: '+${product.getMemoria()}+' Mb'"></p>
+                    <p th:text="'Merevlemez: '+${product.getMerevlemez()}+' Gb'"></p>
+                    <p th:text="'Kijelző méret: '+${product.getKijelzo()}+' inch'"></p>
+                    <p th:text="'Raktáron: '+${product.getDb()}+' db.'">Elérhető raktármennyiség</p>
+                </div>
+
             </div>
         </div>
     </div>
@@ -60,27 +68,17 @@
                 <p>Nagyon elégedett vagyok a vásárlással, mindenkinek ajánlom!</p>
             </div>
         </div>
-        <!-- Vélemény Beküldés Form -->
-        <h3>Írj Véleményt</h3>
-        <form class="review-form">
-            <label for="name">Név:</label>
-            <input type="text" id="name" name="name" placeholder="A te neved" required>
-
-            <label for="rating">Értékelés:</label>
-            <select id="rating" name="rating" required>
-                <option value="5">⭐⭐⭐⭐⭐</option>
-                <option value="4">⭐⭐⭐⭐</option>
-                <option value="3">⭐⭐⭐</option>
-                <option value="2">⭐⭐</option>
-                <option value="1">⭐</option>
-            </select>
-
-            <label for="review">Véleményed:</label>
-            <textarea id="review" name="review" placeholder="Írd le véleményed" required></textarea>
-
-            <button type="submit" class="submit-review">Vélemény Küldése</button>
-        </form>
     </div>
 </section>
+
+
+<div class="popup-overlay" id="popupOverlay">
+    <div class="popup-content" id="popupContent">
+        <button class="popup-close" onclick="closePopup()">&times;</button>
+        <div id="popupInnerContent"></div>
+    </div>
+</div>
+
+<script src="/js/details.js"></script>
 </body>
 </html>

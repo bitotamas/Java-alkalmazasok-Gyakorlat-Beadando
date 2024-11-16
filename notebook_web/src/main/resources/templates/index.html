@@ -13,24 +13,12 @@
 
 
 <header>
-  <div  th:insert="menu" class="topnav">
-    <!--<a href="index.html" id="home">Kezdőlap</a>
-    <a href="login.html" id="login">Bejelentkezés</a>
-    <a href="register.html" id="register">Regisztráció</a>
-    <a href="contact.html" id="contact">Kapcsolat</a>
-    <a href="products.html" id="products">Termékeink</a>
-    <a href="logout.html" id="logout">Kijelentkezés</a>-->
-  </div>
-
+  <div  th:insert="~{menu}" class="topnav"></div>
 </header>
 
 <main>
 
-
-
-
-
-  <!-- The App Section -->
+  <!-- Főoldal elemei -->
   <div class="container">
     <div class="row">
       <div class="column-66">
@@ -90,6 +78,7 @@
         <img src="/images/lotpic.jpg" width="562" height="288" alt="">
       </div>
     </div>
+    <p><br><br></p>
   </div>
 
 

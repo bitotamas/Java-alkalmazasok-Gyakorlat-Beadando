@@ -53,7 +53,10 @@ public class HomeController {
     public String Register(@ModelAttribute User user, Model model, RedirectAttributes redirectAttributes) {
         for(User felhasznalo2: userRepo.findAll())
             if(felhasznalo2.getEmail().equals(user.getEmail())){
-                redirectAttributes.addFlashAttribute("regMessage", "A megadott Email-cím már foglalt!");
+                redirectAttributes.addFlashAttribute("regError", "A megadott Email-cím már foglalt!");
+                return "redirect:/register";
+            }else if(felhasznalo2.getName().equals(user.getName())){
+                redirectAttributes.addFlashAttribute("regError", "A megadott név már foglalt!");
                 return "redirect:/register";
             }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -134,12 +137,23 @@ public class HomeController {
     }
 
     @Autowired
+    private CPURepository cpuRepo;
+    @Autowired
+    private OSRepository osRepo;
+
+    @Autowired
     private NotebookRepository notebookRepository;
     @GetMapping("/products")
     public String products(Model model) {
-        // Összes notebook lekérdezése
+        // Összes notebook, cpu és oprendszer lekérdezése
         List<Notebook> notebooks = StreamSupport
                 .stream(notebookRepository.findAll().spliterator(), false)
+                .toList();
+        List<CPU> cpus = StreamSupport
+                .stream(cpuRepo.findAll().spliterator(), false)
+                .toList();
+        List<OS> oss = StreamSupport
+                .stream(osRepo.findAll().spliterator(), false)
                 .toList();
 
         // Ellenőrizzük, hogy van-e adat
@@ -150,13 +164,39 @@ public class HomeController {
 
         // Véletlen notebookok kiválasztása
         List<Notebook> randomNotebooks = new ArrayList<>();
-        for (int i = 0; i < 16; i++) {
-            int randomIndex = (int) (Math.random() * notebooks.size());
-            randomNotebooks.add(notebooks.get(randomIndex));
-        }
+        List<CPU> randomNotebooks_cpu = new ArrayList<>();
+        List<OS> randomNotebooks_os = new ArrayList<>();
+        int index=0;
+        int randomIndex=0;
+        do {
+            randomIndex = (int) (Math.random() * notebooks.size());
+            //Csak azok a notebookok kiválasztása, amikből raktáron nem 0db található
+            if(notebooks.get(randomIndex).getDb()!=0)
+            {
 
-        // Adatok átadása a modellnek
+                for(var item : cpus){
+                    if(notebooks.get(randomIndex).getProcesszorid().equals(item.getId()))
+                    {
+                        randomNotebooks_cpu.add(item);
+                    }
+                }
+                for(var item : oss){
+                    if(notebooks.get(randomIndex).getOprendszerid().equals(item.getId()))
+                    {
+                        randomNotebooks_os.add(item);
+                    }
+                }
+
+                randomNotebooks.add(notebooks.get(randomIndex));
+                index++;
+
+            }
+        }while(index<16);
+
+        // Adatok átadása a modelleknek
         model.addAttribute("Products", randomNotebooks);
+        model.addAttribute("CPUs", randomNotebooks_cpu);
+        model.addAttribute("OSs", randomNotebooks_os);
         return "products";
     }
 
