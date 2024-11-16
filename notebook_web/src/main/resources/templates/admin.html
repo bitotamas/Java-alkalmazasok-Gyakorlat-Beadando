@@ -2,10 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Admin Home</title>
+  <title>Admin Menü</title>
+  <link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/menu.css">
+  <link rel="icon" type="image/png" href="/images/webicon.jpg">
 </head>
 <body>
 <div  th:insert="~{menu}" class="topnav">
-<h1>Csak az Admin láthatja ezt az oldalt</h1>
+</div>
+<p><br><br></p>
+<div class="container"><h1>Felhasználói adatok:</h1></div>
+<div th:each="user : ${usersList}" class="center">
+  <div class="container">
+    <div class="card-body">
+      <h5 class="card-title" th:text="'ID: '+${user.getId()}" />
+      <p class="card-text" th:text="'Felhasználónév: '+${user.getName()}" />
+      <p class="card-text" th:text="'E-mail cím: '+${user.getEmail()}" />
+      <p class="card-text" th:text="'Jelszó: '+${user.getPassword()}" />
+      <p class="card-text" th:text="'Szerepkör: '+${user.getRole()}" />
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

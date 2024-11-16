@@ -1,0 +1,119 @@
+/* Alap stílusok */
+body {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+
+}
+
+.container {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 50px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* A sorok és oszlopok stílusa */
+.row {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.col-25 {
+    width: 25%;
+    padding-right: 10px;
+}
+
+.col-75 {
+    width: 75%;
+}
+
+label {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="submit"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type="text"]:focus, select:focus, textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Submit gomb stílusa */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+input[type="submit"]:active {
+    background-color: #388e3c;
+}
+
+.centered-heading {
+    text-align: center; /* Középre igazítás */
+    color: black;       /* Fekete szöveg */
+    background-color: white; /* Fehér háttér */
+    padding: 10px;      /* Szöveg körüli tér */
+    border-radius: 5px; /* Enyhén lekerekített sarkok */
+    margin: 20px auto;  /* Tér a tag körül, és középre igazítás az oldalon */
+    width: fit-content; /* Csak a szöveg szélessége */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Árnyék a vizuális kiemeléshez */
+}
+
+.backToHome {
+    background-color: transparent;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Repsonszív dizájn */
+@media (max-width: 768px) {
+.container {
+        width: 90%;
+    }
+
+.row {
+        flex-direction: column;
+    }
+
+.col-25, .col-75 {
+        width: 100%;
+    }
+}

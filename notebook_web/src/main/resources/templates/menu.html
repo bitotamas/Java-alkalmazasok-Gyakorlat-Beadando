@@ -9,7 +9,7 @@
             <a th:href="@{/register}">Regisztráció</a>
         </span>
 
-        <span sec:authorize="isAuthenticated()">
+        <span sec:authorize="hasRole('ROLE_USER')">
             <a th:href="@{/}">Főoldal</a>
             <a th:href="@{/contact}">Kapcsolat</a>
             <a th:href="@{/messages}">Üzenetek</a>
@@ -19,7 +19,10 @@
         </span>
 
         <span sec:authorize="hasRole('ROLE_ADMIN')">
-            <a th:href="@{/admin/home}">Admin</a>
+            <a th:href="@{/}">Főoldal</a>
+            <a th:href="@{/admin}">Admin</a>
+            <a sec:authentication="principal.username" class="inactiveLink"></a>
+            <a th:href="@{/logout}">Kijelentkezés</a>
         </span>
     </div>
 </div>

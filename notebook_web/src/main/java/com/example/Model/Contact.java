@@ -21,6 +21,16 @@ public class Contact {
     @Column(name = "message")
     private String message;
 
+    public Contact() {}
+
+    public Contact(Integer id, String name, String email, String message, Date created_at) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.message = message;
+        this.created_at = created_at;
+    }
+
     public Date getCreated_at() {
         return created_at;
     }

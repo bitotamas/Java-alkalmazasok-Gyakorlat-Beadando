@@ -30,9 +30,9 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(
                         auth -> auth
                                 .requestMatchers("/css/**", "/js/**", "/images/**", "/favicon.ico").permitAll()
-                                .requestMatchers("/","/login","/register", "/register_process", "/contact", "/contactResult","/messages","/contactList").permitAll()
+                                .requestMatchers("/","/login","/register", "/register_process", "/contact", "/contactResult","/messages","/contactList","/contactAPI","/contactAPI/**").permitAll()
                                 .requestMatchers( "/resources/**","/user","/products","/messages","/contactList").hasRole("USER")
-                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/resources/**","/","/admin","/contactAPI","/contactAPI/").hasRole("ADMIN")
                 )
                 .formLogin(
                         form -> form

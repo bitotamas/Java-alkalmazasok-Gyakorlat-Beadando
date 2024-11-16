@@ -27,8 +27,9 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/admin/home")
-    public String admin() {
+    @GetMapping("/admin")
+    public String admin(Model model) {
+        model.addAttribute("usersList",userRepo.findAll());
         return "admin";
     }
 
