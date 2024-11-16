@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Nov 14. 21:58
+-- Létrehozás ideje: 2024. Nov 16. 16:12
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -42,10 +42,17 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `name`, `email`, `message`, `created_at`) VALUES
-(16, 'user@gmail.com', 'teszt@gmail.com', 'dasdasdsasds', '2024-11-14 18:44:11'),
 (17, 'Guest', 'user@gmail.com', 'asdasdasd', '2024-11-14 20:03:09'),
 (18, 'User', 'user@gmail.com', 'asdasdfsasd', '2024-11-14 20:14:31'),
-(19, 'User', 'user@gmail.com', 'sziaaa', '2024-11-14 20:36:48');
+(19, 'User', 'user@gmail.com', 'sziaaa', '2024-11-14 20:36:48'),
+(20, 'Guest', 'teszt@gmail.com', 'Szia Lajos hogy vagy?', '2024-11-15 17:12:56'),
+(21, 'User', 'user@gmail.com', 'asdsdfgdfghdfhjghjgh', '2024-11-15 17:13:49'),
+(22, 'Guest', 'teszt@gmail.com', 'afhghfghdfghjfgjdjhgdjgh', '2024-11-15 17:14:18'),
+(23, 'User', 'user@gmail.com', 'ggggggggggg', '2024-11-15 17:15:49'),
+(24, 'User', 'user@gmail.com', 'gdfghdfgggggggggggggggg', '2024-11-15 17:16:01'),
+(25, 'Guest', 'user@gmail.com', 'ysfgsdghfghfghdfghd', '2024-11-15 17:16:20'),
+(26, 'Guest', 'teszt@gmail.com', 'asdsadsdasdasda', '2024-11-15 17:16:46'),
+(27, 'Guest', 'teszt@gmail.com', 'ffffffffffffffffffffffffffffffff', '2024-11-15 17:17:43');
 
 -- --------------------------------------------------------
 
@@ -476,7 +483,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT a táblához `gep`
