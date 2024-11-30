@@ -42,17 +42,17 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `name`, `email`, `message`, `created_at`) VALUES
-(17, 'Guest', 'user@gmail.com', 'asdasdasd', '2024-11-14 20:03:09'),
-(18, 'User', 'user@gmail.com', 'asdasdfsasd', '2024-11-14 20:14:31'),
-(19, 'User', 'user@gmail.com', 'sziaaa', '2024-11-14 20:36:48'),
-(20, 'Guest', 'teszt@gmail.com', 'Szia Lajos hogy vagy?', '2024-11-15 17:12:56'),
-(21, 'User', 'user@gmail.com', 'asdsdfgdfghdfhjghjgh', '2024-11-15 17:13:49'),
-(22, 'Guest', 'teszt@gmail.com', 'afhghfghdfghjfgjdjhgdjgh', '2024-11-15 17:14:18'),
-(23, 'User', 'user@gmail.com', 'ggggggggggg', '2024-11-15 17:15:49'),
-(24, 'User', 'user@gmail.com', 'gdfghdfgggggggggggggggg', '2024-11-15 17:16:01'),
-(25, 'Guest', 'user@gmail.com', 'ysfgsdghfghfghdfghd', '2024-11-15 17:16:20'),
-(26, 'Guest', 'teszt@gmail.com', 'asdsadsdasdasda', '2024-11-15 17:16:46'),
-(27, 'Guest', 'teszt@gmail.com', 'ffffffffffffffffffffffffffffffff', '2024-11-15 17:17:43');
+(1, 'Guest', 'user@gmail.com', 'asdasdasd', '2024-11-14 20:03:09'),
+(2, 'User', 'user@gmail.com', 'asdasdfsasd', '2024-11-14 20:14:31'),
+(3, 'User', 'user@gmail.com', 'sziaaa', '2024-11-14 20:36:48'),
+(4, 'Guest', 'teszt@gmail.com', 'Szia Lajos hogy vagy?', '2024-11-15 17:12:56'),
+(5, 'User', 'user@gmail.com', 'asdsdfgdfghdfhjghjgh', '2024-11-15 17:13:49'),
+(6, 'Guest', 'teszt@gmail.com', 'afhghfghdfghjfgjdjhgdjgh', '2024-11-15 17:14:18'),
+(7, 'User', 'user@gmail.com', 'ggggggggggg', '2024-11-15 17:15:49'),
+(8, 'User', 'user@gmail.com', 'gdfghdfgggggggggggggggg', '2024-11-15 17:16:01'),
+(9, 'Guest', 'user@gmail.com', 'ysfgsdghfghfghdfghd', '2024-11-15 17:16:20'),
+(10, 'Guest', 'teszt@gmail.com', 'asdsadsdasdasda', '2024-11-15 17:16:46'),
+(11, 'Guest', 'teszt@gmail.com', 'ffffffffffffffffffffffffffffffff', '2024-11-15 17:17:43');
 
 -- --------------------------------------------------------
 
@@ -437,7 +437,13 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`) VALUES
 (1, 'Admin', 'admin@gmail.com', '$2a$10$QEaf3I.eLiZC4F4pDnqmC.sTysFlJ59wgROmw3ATxceFs/wgg0LvK', 'ROLE_ADMIN'),
-(3, 'User', 'user@gmail.com', '$2a$10$exVjZOnYQ3oFdNTFP7qVHOoL8K2XhKpWXY3r8duw8v9pTNxmC0qbm', 'ROLE_USER');
+(2, 'User', 'user@gmail.com', '$2a$10$exVjZOnYQ3oFdNTFP7qVHOoL8K2XhKpWXY3r8duw8v9pTNxmC0qbm', 'ROLE_USER'),
+(3, 'Szia', 'szia@gmail.com', '$2a$10$mIRM7vP9d7TWf7Cw6DqwA.irQjOkh0AVxiCm6bu7v3AF/ShBAHaba', 'ROLE_USER'),
+(4, 'teszt4', 'teszt4@gmail.com', '$2a$10$0DNmtKwQizGAeR91fleJ/eSCvza9cHqdj6P/LZdTiKNBRPsaEPoI.', 'ROLE_USER'),
+(5, 'jest', 'jest@gmail.com', '$2a$10$4RGN/XO5e1y4HQhB0wKi6ud/vYyTrTRnW2u9/u7GvGdFVGDziIF6O', 'ROLE_USER'),
+(6, 'szialajos', 'szialajos@gmail.com', '$2a$10$NPByKaE2fG5u6yS1BKKJMOCnOy9qAivgUmzs9qUhV63WBAxmxtwpG', 'ROLE_USER'),
+(7, 'laci', 'laci@gmail.com', '$2a$10$44HNyntgnBjlGikR5TRm4e1bxgzNY2SBhJG4JZZ/FMVWLUJjV.GvK', 'ROLE_USER'),
+(8, 'vegso', 'vegso@gmail.com', '$2a$10$Hdvb1fjrzBvY8VvSImnbhOo14nuhKus3IpBqE3oG3YfpWJZLyI586', 'ROLE_USER');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -483,7 +489,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT a táblához `gep`
@@ -507,7 +513,7 @@ ALTER TABLE `processzor`
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Megkötések a kiírt táblákhoz
