@@ -12,6 +12,7 @@
 <form th:action="@{/register_process}" th:object="${reg}" method="post">
   <div class="container">
     <h1>Regisztráció</h1>
+    <div id="error-message"></div>
     <div th:if="${regError}">
       <p style="color: red;" th:text="${regError}"></p>
     </div>
